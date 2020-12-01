@@ -36,7 +36,9 @@ static GtkRadioActionEntry sort_radio_entries[] =
     { "sort-by-state", NULL, N_("Sort by Stat_e"), NULL, NULL, 5 },
     { "sort-by-age", NULL, N_("Sort by A_ge"), NULL, NULL, 6 },
     { "sort-by-time-left", NULL, N_("Sort by Time _Left"), NULL, NULL, 7 },
-    { "sort-by-size", NULL, N_("Sort by Si_ze"), NULL, NULL, 8 }
+    { "sort-by-size", NULL, N_("Sort by Si_ze"), NULL, NULL, 8 },
+    { "sort-by-download-speed", NULL, N_("Sort by _Download Speed"), NULL, NULL, 9 },
+    { "sort-by-upload-speed", NULL, N_("Sort by _Upload Speed"), NULL, NULL, 10 }
 };
 
 static void sort_changed_cb(GtkAction* action, GtkRadioAction* current, gpointer user_data)

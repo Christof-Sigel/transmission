@@ -611,6 +611,46 @@ static int compare_by_state(GtkTreeModel* m, GtkTreeIter* a, GtkTreeIter* b, gpo
     return ret;
 }
 
+static int compare_by_download_speed(GtkTreeModel* m, GtkTreeIter* a, GtkTreeIter* b, gpointer u)
+{
+    int ret = 0;
+    tr_torrent* t;
+    tr_stat const* sa;
+    tr_stat const* sb;
+
+    gtk_tree_model_get(m, a, MC_TORRENT, &t, -1);
+    sa = tr_torrentStatCached(t);
+    gtk_tree_model_get(m, b, MC_TORRENT, &t, -1);
+    sb = tr_torrentStatCached(t);
+
+    if (ret == 0)
+    {
+        ret = compare_double(sa->pieceDownloadSpeed_KBps, sb->pieceDownloadSpeed_KBps);
+    }
+
+    return ret;
+}
+
+static int compare_by_upload_speed(GtkTreeModel* m, GtkTreeIter* a, GtkTreeIter* b, gpointer u)
+{
+    int ret = 0;
+    tr_torrent* t;
+    tr_stat const* sa;
+    tr_stat const* sb;
+
+    gtk_tree_model_get(m, a, MC_TORRENT, &t, -1);
+    sa = tr_torrentStatCached(t);
+    gtk_tree_model_get(m, b, MC_TORRENT, &t, -1);
+    sb = tr_torrentStatCached(t);
+
+    if (ret == 0)
+    {
+        ret = compare_double(sa->pieceUploadSpeed_KBps, sb->pieceUploadSpeed_KBps);
+    }
+
+    return ret;
+}
+
 static void core_set_sort_mode(TrCore* core, char const* mode, gboolean is_reversed)
 {
     int const col = MC_TORRENT;
@@ -649,6 +689,14 @@ static void core_set_sort_mode(TrCore* core, char const* mode, gboolean is_rever
     else if (g_strcmp0(mode, "sort-by-size") == 0)
     {
         sort_func = compare_by_size;
+    }
+    else if (g_strcmp0(mode, "sort-by-download-speed") == 0)
+    {
+        sort_func = compare_by_download_speed;
+    }
+    else if (g_strcmp0(mode, "sort-by-upload-speed") == 0)
+    {
+        sort_func = compare_by_upload_speed;
     }
     else
     {

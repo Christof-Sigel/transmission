@@ -54,6 +54,8 @@
       <menuitem action='sort-by-size'/> 
       <menuitem action='sort-by-state'/> 
       <menuitem action='sort-by-time-left'/> 
+      <menuitem action='sort-by-download-speed'/> 
+      <menuitem action='sort-by-upload-speed'/> 
       <separator/> 
       <menuitem action='sort-reversed'/> 
     </menu> 
@@ -90,6 +92,8 @@
       <menuitem action='sort-by-size'/> 
       <menuitem action='sort-by-state'/> 
       <menuitem action='sort-by-time-left'/> 
+      <menuitem action='sort-by-download-speed'/> 
+      <menuitem action='sort-by-upload-speed'/> 
       <separator/> 
       <menuitem action='sort-reversed'/> 
     </menu> 
